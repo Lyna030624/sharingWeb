@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>课程</title>
+		<link rel="stylesheet" href="../static/css/coursestyle.css">
+	</head>
+	<body class="contentbody">
+		<div class="totalcourses">
+
+			<div class="courses">
+            <div class="addcourse2" onclick="showpopup()">
+				    <input id="btn_add" type="submit" value="点击添加单元"/>
+		    	</div>
+				<div id="collapse" class="collapse1">
+					<h2>我创建的课程</h2>
+					{% for a in units %}
+                     <a href="{{ url_for('material', cuid=a[2]) }}">
+				    <h3>{{ a[1] }}</h3>
+                     </a>
+
+					{% endfor %}
+{#				<!--#}
+{#				    <h3>第二单元</h3>#}
+{#				    <div onclick="window.open('{{ url_for('material') }}')">#}
+{#				        <p>第三课</p>#}
+{#				    </div>#}
+{##}
+{#				    <h3>unit one</h3>#}
+{#				    <div onclick="window.open('{{ url_for('material') }}')">#}
+{#				        <p>four</p>#}
+{#				    </div>#}
+{#				-->#}
+				</div>
+
+
+			</div>
+
+		</div>
+
+		<div id="overlay">
+			<div class="popup">
+				<h3>添加单元与课程</h3>
+				<form action="/createunit" method="post">
+				<table class="tablecenter">
+				<!--课程名称-->
+				<tr>
+				<td>单元名称:</td>
+				<td><input type="text" placeholder="请输入单元名称" class="cuname" id="cuname"  name="cuname"></td>
+				<td id="unitwarn" class="warn"></td>
+				</tr>
+
+{#                    <tr>#}
+{#				<td>课名:</td>#}
+{#				<td><input type="text" placeholder="请输入课程名称" class="ccname" id="ccname"  name="ccname"></td>#}
+{#				<td id="ccwarn" class="warn"></td>#}
+{#				</tr>#}
+
+				<!--按钮-->
+				<tr>
+				<td><input type="submit" value="确认" onclick="hidepopup()"/></td>
+				<td><input type="reset" value="重置" id="reset"></td>
+				<td><input type="reset" value="取消" onclick="hidepopup()"></td>
+				</tr>
+
+				</table>
+				</form>
+			</div>
+		</div>
+
+
+
+		<script>
+			function determine(){
+	var text1=document.getElementById("coursename");
+	var teacher=document.getElementById("teachername");
+	if(text1.value&&teacher.value)
+	{
+		var overlay = document.getElementById("overlay");
+		overlay.style.display = "none";
+
+		var div = document.createElement("div");
+			div.innerHTML += '课程名称：'+text1.value+'<br>'+'创建教师为：'+teacher.value;
+			div.className="ctitle";
+			div.id="ctitle";
+			document.body.appendChild(div);
+			document.getElementById("ctitle").addEventListener('click',function()
+			{
+				window.open("{{ url_for('material') }}","_self");
+			})
+
+		}
+
+	else if(text1.value)
+	{
+		alert("请输入创建课程教师名称！")
+	}
+	else if(teacher.value)
+	{
+		alert("请输入课程名称！")
+	}
+	else{
+		alert("请输入课程与创建课程教师名称！")
+	}
+  }
+		</script>
+		<script src="../static/js/creatcourse.js"></script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet"  type="text/css" href="/static/style.css">
+		<title>发布公告</title>
+	</head>
+	<body>
+		<div>
+		<h1>发布公告</h1>
+		<!--将登陆信息放到一个form中-->
+		<form action="/create_annco" method="POST">
+		    通知名称：<input type="text" name="anna" placeholder="请输入通知名称" />
+		    <br/>
+            通知部门：<input type="text" name="anpa" placeholder="请输入通知部门" />
+		    <br/>
+		    通知内容：<input type="text" name="aninformation" placeholder="请输入通知内容" />
+		    <br/>
+			通知时间：<input type="text" name="anti" placeholder="请输入通知时间" />
+			<br/>
+		     <!--jinja2的函数-->
+		    {% if message %} {{message}} {% endif %}
+		    <br/>
+            <input type="submit" value="发布" />
+            <input type="reset" value="重置" />
+            <a href="{{ url_for('announcement') }}">退出</a>
+
+		</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>公告通知</title>
+		<link rel="stylesheet" href="../static/css/coursestyle.css">
+	</head>
+	<body>
+		<div class="headnav">
+			<div class="logo">
+				<h3>公告通知</h3>
+			</div>
+			<div class="headmenu">
+				<ul>
+					<li class="active">
+						<a href="{{ url_for('announcement') }}">公告通知</a>
+					</li>
+{#                    <li>#}
+{#						<a href="{{ url_for('hello') }}">讨论留言</a>#}
+{#					</li>#}
+					<li>
+						<a href="{{ url_for('course') }}">课程模块</a>
+					</li>
+					<li>
+						<a href="{{ url_for('usercenter') }}">个人中心</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="notice">
+{#			<div class="classify">#}
+{#				<select name="classify_">#}
+{#					<option value="全部通知">全部通知</option>#}
+{#					<option value="后勤通知">后勤通知</option>#}
+{#					<option value="教学通知">教学通知</option>#}
+{#				</select>#}
+{#			</div>#}
+{#			<div class="search">#}
+{#				<input type="text" placeholder="请输入您想要搜索的内容">#}
+{#				<button id="submit">搜索</button>#}
+{#			</div>#}
+		</div>
+
+        <a href="{{ url_for('annco_html') }}">发布公告</a>
+		<div class="notice_content">
+			<form class="not_content">
+				<table class="tab" border="1px">
+					<tr height="40px">
+						<td width="200px" align="center">
+							通知名称
+						</td>
+						<td width="200px" align="center">
+							通知部门
+						</td>
+                        <td width="1000px" align="center">
+							通知内容
+						</td>
+						<td width="100px" align="center">
+							通知时间
+						</td>
+					</tr>
+                     {% for i in an %}
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+            </tr>
+        {% endfor %}
+			    </table>
+			</form>
+		</div>
+
+
+		<script src="../static/js/creatcourse.js"></script>
+	</body>
+</html>

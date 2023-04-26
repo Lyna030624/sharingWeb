@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="/static/style.css">
+    <title>登录</title>
+</head>
+<body>
+    <div>
+    <h1>用户登录</h1>
+    <!--将登陆信息放到一个form中-->
+    <form method="POST">
+        工号：<input type="text" name="tno" placeholder="请输入工号" />
+        <br/>
+    <br/>
+        用户名：<input type="text" name="username" placeholder="请输入用户名" />
+        <br/>
+    <br/>
+        密码：<input type="password" name="password" placeholder="请输入密码（小于12位）" />
+        <br/>
+    <br/>
+         <!--jinja2的函数-->
+        {% if message %} {{message}} {% endif %}
+        <br/>
+    <br/>
+        <input type="submit" value="登录" />
+        <input type="reset" value="重置" />
+    </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>目录</title>
+    <link rel="stylesheet" href="../static/css/coursestyle.css">
+</head>
+<body class="ad">
+
+<div class="addcourse" onclick="showpopup()">
+    <input id="btn_add" type="button" value="添加课程"/>
+</div>
+<div class="coursedirectory" id="coursedirectory" name="coursedirectory">
+
+    <div class="bctitle">
+        {% for i in u %}
+        <a href="{{ url_for('coursecontent', cid=i[0]) }}">
+        <div class="ctitle" id="{{ i[0] }}">
+            课程名称：{{ i[1] }}
+            <br>
+            创建教师：{{ i[2] }}
+        </div>
+        </a>
+    {% endfor %}
+    {% if status == "error" %}
+        <script>
+            alert("操作失败！")
+        </script>
+    {% endif %}
+    </div>
+
+
+</div>
+<div id="overlay">
+    <div class="popup">
+        <h3>添加课程</h3>
+        <form action="/getcourseinform" method="post">
+            <table class="tablecenter">
+                <!--课程名称-->
+                <tr>
+                    <td>课程名称:</td>
+                    <td><input type="text" placeholder="请输入课程名称" class="coursename" id="coursename"
+                               name="coursename"></td>
+                    <td id="namewarn" class="warn"></td>
+                </tr>
+
+                <tr>
+                    <td>课程号(教师工号+日期):</td>
+                    <td><input type="text" placeholder="请输入课程号" class="center" id="cid" name="cid"></td>
+                    <td id="cidwarn" class="warn"></td>
+                </tr>
+
+                <!--教师名称-->
+                <tr>
+                    <td>创建教师:</td>
+                    <td><input type="text" placeholder="请输入创建教师姓名" class="teachername" id="teachername"
+                               name="teachername"></td>
+                    <td id="teacherwarn" class="warn"></td>
+                </tr>
+                <!--
+
+                                    <tr>
+                                <td>教师工号:</td>
+                                <td><input type="text" placeholder="请输入创建教师工号" class="tno"  id="tno" name="tno"></td>
+                                <td id="tnowarn" class="warn"></td>
+                                </tr>
+                -->
+
+            </table>
+            <!--按钮
+        -->
+            <tr>
+                <td><input type="submit" value="确认" onclick="determine()"/></td>
+                <td><input type="reset" value="重置" id="reset"></td>
+                <td><input type="reset" value="取消" onclick="hidepopup()"></td>
+            </tr>
+            <p>请在添加课程后刷新页面</p>
+        </form>
+    </div>
+</div>
+<script>
+    {#function determine() {#}
+    {#    var text1 = document.getElementById("coursename");#}
+    {#    var teacher = document.getElementById("teachername");#}
+    {#    if (text1.value && teacher.value) {#}
+    {#        var overlay = document.getElementById("overlay");#}
+    {#        overlay.style.display = "none";#}
+    {##}
+    {#        var div = document.createElement("div");#}
+    {#        div.innerHTML += '课程名称：' + text1.value + '<br>' + '创建教师为：' + teacher.value;#}
+    {#        div.className = "ctitle";#}
+    {#        div.id = "ctitle";#}
+    {#        document.body.appendChild(div);#}
+    {#        document.getElementById("ctitle").addEventListener('click', function () {#}
+    {#            window.open("{{ url_for('coursecontent') }}", "_self");#}
+    {#        })#}
+    {##}
+    {#    } else if (text1.value) {#}
+    {#        alert("请输入创建课程教师名称！")#}
+    {#    } else if (teacher.value) {#}
+    {#        alert("请输入课程名称！")#}
+    {#    } else {#}
+    {#        alert("请输入课程与创建课程教师名称！")#}
+    {#    }#}
+    {# }#}
+    {##}
+    {##}
+    {#const courses = document.querySelectorAll('.ctitle');#}
+    {##}
+    {#console.log(courses)#}
+    {##}
+    {#courses.forEach(one => {#}
+    {#    one.addEventListener('click', event => onc(one))#}
+    {##}
+    {##}
+    {#function onc(btnObj) {#}
+    {#    console.log('sfasahdgfh')#}
+    {#    let cid = btnObj.id;#}
+    {#    fetch('{{ url_for("coursecontent") }}', {#}
+    {#        method: "POST", // HTTP请求方式#}
+    {#        body: JSON.stringify({#}
+    {#            cid: cid // 在服务器端通过req.body.eid方式获取#}
+    {#        }),#}
+    {#        headers: {#}
+    {#            "Content-Type": "application/json"#}
+    {#        }}).then(response => {#}
+    {#            return response.json(); // 不是用户需要的数据，通过return返回给浏览器#}
+    {#        }).then(data => { // 服务器返回给客户端的数据#}
+    {#            console.log(data.msg);#}
+    {#        }).catch(e => {#}
+    {#            console.log(e);#}
+    {#        })#}
+    {#    console.log('xxxxxxxxxxxxxxxxxxxx')#}
+    {#    window.open('{{ url_for('coursecontent') }}', '_self')#}
+    {#    }#}
+    {##}
+
+        {##}
+        {#function onc() {#}
+        {#    console.log('aksjdhkjasdhS')#}
+        {#    var cid = document.getElementById("cid");#}
+        {#    $.ajax({#}
+        {#        url: "/coursecontent",#}
+        {#        method: "post",#}
+        {#        data: {#}
+        {#            'cid': cid#}
+        {#        },#}
+        {#        dataType: 'JSON',#}
+        {#        success: function (res) {#}
+        {#            console.log(res)#}
+                    {#cid = JSON.parse(cid);#}
+        {#            // alert(res.content);#}
+                    {#addBotMessage(cid.content);#}
+                    {#chatBtn.attr('disabled', false)  // 成功接受消息后让提交按钮再次可以点击#}
+        {#        },#}
+        {#        error: function (jqXHR, textStatus, errorThrown) {#}
+        {#            addBotMessage('<span style="color:red;">' + '出错啦！请稍后再试!' + '</span>');#}
+        {#            chatBtn.attr('disabled', false)#}
+        {#        }#}
+        {#    });#}
+        {#    window.open("{{ url_for('coursecontent') }}", "_self");#}
+        {##}
+
+</script>
+<script src="../static/js/creatcourse.js"></script>
+</body>
+</html>

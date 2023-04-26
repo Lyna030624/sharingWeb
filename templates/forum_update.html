@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改留言</title>
+</head>
+<body>
+    <center>
+        <h1 style="color: darkened">修改留言</h1>
+        <table>
+            <form action="/modify" method="post">
+                <tr>
+                    <td>教师工号：</td>
+                    <td>
+                        <textarea name="tno" cols="20" rows="1">{{data[0].tno}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>教师姓名：</td>
+                    <td>
+                        <textarea name="username" cols="20" rows="1">{{data[0].username}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>留言信息：</td>
+                    <td>
+                        <textarea name="info" cols="30" rows="10">{{data[0].info}}
+                        </textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="add">修改</button>
+                    </td>
+                </tr>
+            </form>
+
+        </table>
+    </center>
+</body>
+</html>

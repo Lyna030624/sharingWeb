@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>所加入课程</title>
+		<link rel="stylesheet" href="../static/css/coursestyle.css">
+	</head>
+	<body class="contentbody">
+		<div class="totalcourses">
+			<div class="courses">
+				<div id="collapse">
+				    <h2>我加入的课程</h2>
+				    {% for b in j %}
+                     <a href="{{ url_for('material', cuid=b[2]) }}">
+				    <h3>{{ b[1] }}</h3>
+                     </a>
+
+					{% endfor %}
+
+{#				    <h3>第一单元</h3>#}
+{#				    <div onclick="window.open('{{ url_for('material') }}')">#}
+{#				        <p>第三课</p>#}
+{#				    </div>#}
+{##}
+{#				    <h3>unit three</h3>#}
+{#				    <div onclick="window.open('{{ url_for('material') }}')">#}
+{#				        <p>one</p>#}
+{#				    </div>#}
+				
+				</div>
+{#				<button>管理</button>#}
+			</div>
+		</div>
+		<script src="../static/js/creatcourse.js"></script>
+	</body>
+</html>

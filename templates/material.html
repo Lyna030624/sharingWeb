@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>课程资料</title>
+		<link rel="stylesheet" href="../static/css/coursestyle.css">
+	</head>
+	<body>
+		<div class="box">
+			<div class="coursematerial">
+			<div class="materialtitle">
+{#				<p>标题</p>#}
+			</div>
+                {%  for i in entries %}
+				<div class="xianshi" id="files" d="filenames">
+					<a href="/files/{{ i }}">{{ i }}</a>
+				</div>
+                {% endfor %}
+
+			<div class="materialcontent">
+				
+				<form method="post"
+				      action="/uploader"
+				      enctype="multipart/form-data">
+				    请选择文件：<input type="file" name="file" id="file"><br>
+				    <input type="submit" value="提交" onclick="tijiao()">
+				</form>
+
+			</div>
+		    </div>
+
+{#		<div class="discuss">#}
+{#			<p>讨论</p>#}
+{#			#}
+{#		</div>#}
+		</div>
+		<script>
+		function tijiao(){
+		if(myfile.files[0] == undefined) alert("您未选择文件！");
+		else{
+		var myfile=new Array(document.getElementById("files").getAttribute('d'));
+		document.innerhtml=myfile;
+
+		}
+		}
+
+		</script>
+		<script src="../static/js/creatcourse.js"></script>
+	</body>
+</html>
